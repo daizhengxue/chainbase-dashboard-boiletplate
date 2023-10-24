@@ -1,3 +1,4 @@
+"use client"; 
 import Markdown from "@/components/Markdown";
 import GridItemContentContainer from "@/components/GridLayout/GridItemContentContainer";
 import { useEffect, useState } from "react";
