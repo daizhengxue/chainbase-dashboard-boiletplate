@@ -17,13 +17,13 @@ export default function TokenProfitTable() {
     if (!task) {
       queryTaskVaule?.addTask(tokenProfitQuery)
     }
-    if (task?.status === 'idle' && address) {   // 只有当地址存在时才执行查询
+    if (task?.status === 'idle' && address) {   // only query when address exist
       queryTaskVaule?.callTask(tokenProfitQuery.id, { address })
     }
-  }, [queryTaskVaule, task, address])   // 添加 address 为依赖
+  }, [queryTaskVaule, task, address])   
   
   const handleAddressQuery = useCallback((inputAddress: string) => {
-    setAddress(inputAddress);  // 更新地址
+    setAddress(inputAddress);  // update address
   }, []);
 
   const columns = [
@@ -40,7 +40,7 @@ export default function TokenProfitTable() {
       title="Token Profit Analysis" 
       outerUrl={`https://console.chainbase.com/dataCloud?sql=${encodeURIComponent(getQueryString(address))}`} 
       dragable>
-      <AddressInput onQuery={handleAddressQuery} />  {/* 添加 AddressInput 组件 */}
+      <AddressInput onQuery={handleAddressQuery} />  {/* add AddressInput component */}
       <ResultTable columns={columns} data={task?.data || []} />
     </GridItemContentContainer>
   );
