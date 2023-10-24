@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const chainbaseApiPath = url.pathname.replace('/api/chainbase/', '')
 
   try {
-    // 目标 URL
+    // target URL
     const baseUrl = 'https://api.chainbase.online/v1/'
     const params = url.searchParams
     params.delete('params')
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
 
     console.log(targetUrl)
 
-    // 使用 fetch 请求目标 URL
+    // use fetch request target URL
     const response = await fetch(targetUrl, {
       headers: {
         accept: 'application/json',
@@ -23,7 +23,7 @@ export async function GET(request: Request) {
       },
     })
 
-    // 检查响应是否成功
+    // check the response success or not
     if (!response.ok) {
       return new Response('Error', {
         status: response.status,
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     }
 
     if (response.body) {
-      // 将目标服务器的流式响应发送至客户端
+      // Send the streaming response from the target server to the client.
       return new Response(response.body as any as ReadableStream)
     } else {
       return new Response('Error', {
@@ -54,13 +54,13 @@ export async function POST(request: Request) {
   const chainbaseApiPath = url.pathname.replace('/api/chainbase/', '')
 
   try {
-    // 目标 URL
+    // target URL
     url.searchParams.delete('params')
     const baseUrl = 'https://api.chainbase.online/v1/'
     const targetUrl =
       baseUrl + chainbaseApiPath 
 
-    // 使用 fetch 请求目标 URL
+    // use fetch request target URL
     const response = await fetch(targetUrl, {
       method: 'POST',
       headers: {
@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     })
     console.log(response.ok, response.status)
 
-    // 检查响应是否成功
+    // check if the response success
     if (!response.ok) {
       return new Response('Error', {
         status: response.status,
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     }
 
     if (response.body) {
-      // 将目标服务器的流式响应发送至客户端
+      // Send the streaming response from the target server to the client.
       return new Response(response.body as any as ReadableStream)
     } else {
       return new Response('Error', {
