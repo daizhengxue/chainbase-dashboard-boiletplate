@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     const response = await fetch(targetUrl, {
       headers: {
         accept: 'application/json',
-        'x-api-key': process.env.CHAINBASE_API_KEY || 'demo',
+        'x-api-key': process.env.CHAINBASE_API_KEY || '2UNbKHKJzdbrmw22VdVrwEWA6kp',
       },
     })
 
